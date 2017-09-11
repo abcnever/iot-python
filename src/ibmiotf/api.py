@@ -418,7 +418,7 @@ class ApiClient():
         devicesUrl = ApiClient.devicesUrl % (self.host, typeId)
         payload = {'deviceId' : deviceId, 'authToken' : authToken, 'deviceInfo' : deviceInfo, 'location' : location, 'metadata': metadata}
 
-        r = requests.post(devicesUrl, auth=self.credentials, data=json.dumps(payload), headers = {'content-type': 'application/json'}, verify=self.verify)
+        r = requests.post(devicesUrl, auth=self.credentials, data=json.dumps(payload), headers = {'content-type': 'application/json', 'auth-token': authToken }, verify=self.verify)
         status = r.status_code
         if status == 201:
             self.logger.debug("Device Instance Created")
